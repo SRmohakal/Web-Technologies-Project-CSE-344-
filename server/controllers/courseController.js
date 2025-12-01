@@ -6,8 +6,8 @@ export const getAllCourse = async (req,res) => {
         
         
 
-        res.json ({success: true, courses})
-    } catch (error) {
+            res.json ({success: true, courses})
+    }    catch (error) {
         res.json({success: false, message:error.message})
     }
 }
@@ -15,7 +15,7 @@ export const getAllCourse = async (req,res) => {
 
 
 
-export const getCourseId = async(req,res)=>{
+export const getCourseId = async(req,res)=> {
     const {id} = req.params 
     try {
 
