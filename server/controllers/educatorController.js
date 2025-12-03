@@ -96,3 +96,36 @@ export const educatorDashboardData = async(req,res) =>{
     }
 }
 
+
+export const getEnrolledStudentsData = async(req,res) =>{
+    try {
+        const educator = req.auth.userId;
+        const courses = await Course.find({educator})
+        
+        const enrolledStudents = [];
+
+      
+        for(const course of courses){
+            const students = await User.find({
+                _id: {$in: course.enrolledStudents}
+            }, 'name imageUrl createdAt'); 
+
+            students.forEach(student => {
+                enrolledStudents.push({
+                    student: {
+                        _id: student._id,
+                        name: student.name,
+                        imageUrl: student.imageUrl
+                    },
+                    courseTitle: course.courseTitle,
+                    purchaseDate: student.createdAt 
+                });
+            });
+        }
+
+        res.json({success: true, enrolledStudents});
+
+    } catch (error) {
+        res.json({success: false, message:error.message})
+    }
+}
