@@ -4,7 +4,6 @@ import {v2 as cloudinary} from 'cloudinary'
 
 import User from '../models/User.js'
 
-
 export const updateRoleToEducator = async (req,res)=>{
     try {
         const userId = req.auth.userId
