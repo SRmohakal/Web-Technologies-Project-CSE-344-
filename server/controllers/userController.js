@@ -1,9 +1,7 @@
 
 import Course from "../models/Course.js"
-
 import User from "../models/User.js"
 import { CourseProgress } from "../models/CourseProgress.js"
-
 
 export const getUserData = async(req,res)=>{
     try {
